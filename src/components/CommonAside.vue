@@ -3,7 +3,7 @@
     <el-menu default-active='1-4-1' class='el-menu-vertical-demo'
     @open='handleOpen' @close='handleClose' :collapse='isCollapse'
     active-text-color='#fff' background-color='#545D66' text-color='#21B8C9'>
-    <h4>通用后台管理系统</h4>
+    <h3>{{ isCollapse?'后台':'通用后台管理系统' }}</h3>
     <el-menu-item v-for="item in noChildren" @click="clickMenu (item)"
     :key="item.name" :index='item.name'>
       <!-- 要绑定class才能使用模板字符串！ -->
@@ -29,7 +29,6 @@
 export default {
   data () {
     return {
-      isCollapse: false,
       menuData: [
         {
           path: '/',
@@ -96,6 +95,9 @@ export default {
     // 没有子菜单
     noChildren () {
       return this.menuData.filter(item => !item.children)
+    },
+    isCollapse () {
+      return this.$store.state.tab.isCollapse
     }
   }
 }
@@ -103,11 +105,13 @@ export default {
 <style scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 100%;
-    min-height: 400px;
-    border: none;
-    height: 100vh;
+    min-height: 100vh;
   }
-  h4{
+  .el-menu{
+    min-height: 100vh;
+    border: none;
+  }
+  h3{
     text-align: center;
     color: white;
   }

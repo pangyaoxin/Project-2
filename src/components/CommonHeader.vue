@@ -1,7 +1,7 @@
 <template>
     <div class="commonHeader">
         <div class="left">
-            <el-button icon="el-icon-menu" size="mini"></el-button>
+            <el-button icon="el-icon-menu" size="mini" @click="handleMenu"></el-button>
             <span class="text">首页</span>
         </div>
         <div class="right">
@@ -17,7 +17,20 @@
         </div>
     </div>
 </template>
-<script></script>
+<script>
+export default {
+  data () {
+    return {
+
+    }
+  },
+  methods: {
+    handleMenu () {
+      this.$store.commit('menuCollapse')
+    }
+  }
+}
+</script>
 <style scoped>
 .commonHeader {
     height: 60px;
@@ -26,27 +39,32 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .left {
     padding-left: 20px;
 }
-.text{
+
+.text {
     color: white;
     padding-left: 20px;
 }
-.right{
+
+.right {
     padding-right: 20px;
 }
+
 .el-dropdown-link {
     cursor: pointer;
     color: white;
     margin-left: 20px;
 }
+
 .el-icon-arrow-down {
     font-size: 12px;
 }
-img{
+
+img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-}
-</style>
+}</style>
