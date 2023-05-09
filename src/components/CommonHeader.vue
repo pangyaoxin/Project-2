@@ -2,7 +2,11 @@
     <div class="commonHeader">
         <div class="left">
             <el-button icon="el-icon-menu" size="mini" @click="handleMenu"></el-button>
-            <span class="text">首页</span>
+            <span class="text">
+                <el-breadcrumb separator="/" v-for="item in tabsList" :key="item.name">
+                    <el-breadcrumb-item :to="{ path: item.path }">{{ item.label }}</el-breadcrumb-item>
+                </el-breadcrumb>
+            </span>
         </div>
         <div class="right">
             <el-dropdown>
@@ -21,12 +25,16 @@
 export default {
   data () {
     return {
-
     }
   },
   methods: {
     handleMenu () {
       this.$store.commit('menuCollapse')
+    }
+  },
+  computed: {
+    tabsList () {
+      return this.$store.state.tab.tabsList
     }
   }
 }
@@ -39,20 +47,21 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
-
 .left {
     padding-left: 20px;
+    display: flex;
 }
-
 .text {
-    color: white;
-    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
 }
-
+.el-breadcrumb__item:last-child /deep/ .el-breadcrumb__inner{
+  color: #999;
+}
 .right {
     padding-right: 20px;
 }
-
 .el-dropdown-link {
     cursor: pointer;
     color: white;

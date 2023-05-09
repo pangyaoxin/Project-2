@@ -31,7 +31,7 @@ export default {
     return {
       menuData: [
         {
-          path: '/',
+          path: '/home',
           name: 'home',
           label: '首页',
           icon: 's-home',
@@ -81,10 +81,13 @@ export default {
     handleClose (key, keyPath) {
       console.log(key, keyPath)
     },
+    // 点击左侧菜单的方法
     clickMenu (value) {
       if (this.$route.path !== value.path && !(this.$route.path === '/home' && value.path === '/')) {
         this.$router.push(value.path)
       }
+      // 点击时添加面包屑的数据
+      this.$store.commit('selectMenu', value)
     }
   },
   computed: {

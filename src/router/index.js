@@ -6,6 +6,7 @@ import MallView from '../views/MallView.vue'
 import UserView from '../views/UserView.vue'
 import PageOneView from '../views/PageOneView.vue'
 import PageTwoView from '../views/PageTwoView.vue'
+import '@/api/mockServeData/home'
 
 Vue.use(VueRouter)
 
@@ -15,11 +16,11 @@ const routes = [
     redirect: '/home',
     component: MainView,
     children: [
-      { path: 'home', component: HomeView },
-      { path: 'mall', component: MallView },
-      { path: 'user', component: UserView },
-      { path: 'page1', component: PageOneView },
-      { path: 'page2', component: PageTwoView }
+      { path: 'home', name: 'home', component: HomeView },
+      { path: 'mall', name: 'mall', component: MallView },
+      { path: 'user', name: 'user', component: UserView },
+      { path: 'page1', name: 'page1', component: PageOneView },
+      { path: 'page2', name: 'page2', component: PageTwoView }
     ]
   }
 ]
