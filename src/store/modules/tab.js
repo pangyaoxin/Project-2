@@ -1,3 +1,4 @@
+import Cookie from 'js-cookie'
 // 左边菜单
 export default {
   state: {
@@ -12,10 +13,11 @@ export default {
         icon: 's-home',
         url: 'Home/Home'
       }
-    ]
+    ],
+    menuData: []
   },
-  // 控制菜单的展开收缩的方法
   mutations: {
+    // 控制菜单的展开收缩的方法
     menuCollapse (state) {
       state.isCollapse = !state.isCollapse
     },
@@ -27,7 +29,11 @@ export default {
           state.tabsList.push(value)
         }
       }
-      console.log(state.tabsList)
+    },
+    // 控制左边菜单
+    handleMenu (state, data) {
+      state.menuData = data.data.menu
+      Cookie.set('menuData', JSON.stringify(data.data.menu))
     },
     // 点击删除标签tag
     tagsDelete (state, value) {
